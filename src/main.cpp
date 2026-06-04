@@ -6,30 +6,39 @@ using namespace geode::prelude;
 #include <fmod.hpp>
 
 class $modify(SubaruDeath, PlayLayer) {
-    static inline FMOD::Sound* s_lastSound = nullptr;
+    static inline FMOD::Sound* s_returningbydeath = nullptr;
+    
+    bool init(GJGameLevel* level, bool useReplays, bool dontCreateObjects) {
+        if (!PlayLayer::init(level, useReplays, dontCreateObjects)) return false;
+        auto audioFile = Mod::get()->getResourcesDir() / "returningbydeath.ogg";
+        if (std::filesystem::exists(audioFile) && !s_returningbydeath) {
+            FMOD::System* system = FMODAudioEngine::sharedEngine()->m_system;
+            if (system) {
+                system->createSound(
+                    geode::utils::string::pathToString(audioFile).c_str(),
+                    FMOD_CREATESAMPLE,
+                    nullptr,
+                    &s_returningbydeath
+                );
+            }
+        }
+        return true;
+    }
     void resetLevel() {
         PlayLayer::resetLevel();
-        if (s_lastSound) {
-            s_lastSound->release();
-            s_lastSound = nullptr;
-        }
-        auto audioFile = Mod::get()->getResourcesDir() / "returningbydeath.ogg";
-        if (!std::filesystem::exists(audioFile)) return;
-        FMOD::Sound* sound = nullptr;
-        FMOD::Channel* channel = nullptr;
-        FMOD::System* system = FMODAudioEngine::sharedEngine()->m_system;
-        if (system){
-            system->createSound(
-                geode::utils::string::pathToString(audioFile).c_str(),
-                FMOD_DEFAULT, nullptr, &sound
-            );
-        }
-        if (!sound) return;
-        s_lastSound = sound;
-        system->playSound(sound, nullptr, false, &channel);
-        if (channel) {
-            channel->setVolume(Mod::get()->getSettingValue<float>("volume"));
+        if (s_returningbydeath) {
+            FMOD::System* system = FMODAudioEngine::sharedEngine()->m_system;
+            FMOD::Channel* channel = nullptr;
+            system->playSound(s_returningbydeath, nullptr, false, &channel);
+            if (channel) {
+                channel->setVolume(Mod::get()->getSettingValue<float>("volume"));
+            }
         }
     }
-    
-};
+    ~SubaruDeath() {
+        if (s_returningbydeath) {
+            s_returningbydeath->release();
+            s_returningbydeath = nullptr;
+        }
+    }
+};    
