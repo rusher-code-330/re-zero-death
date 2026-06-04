@@ -7,8 +7,8 @@
         "ios": "2.2081"
     },
     "id": "rusher.rezerodeath",
-    "name": "re:zero death (beta)",
-    "version": "v1.0.0",
+    "name": "re zero death",
+    "version": "v1.0.1",
     "developer": "rusher",
     "description": "funny kingsammelot number go brr",
 
@@ -34,5 +34,6 @@
         }
     },
 
-    "tags": ["joke"]
+    "tags": ["joke", "music"],
+    "link": {"source": "https://github.com/rusher-code-330/re-zero-death"}
 }

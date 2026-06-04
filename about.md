@@ -1,16 +1,9 @@
 # re:zero death
-
 ---
-
 This mod plays a sound when you die
  
 ---
-You can adjust the volume in the mod's settings
-
----
-created by <c-ff1a1a>R</c><c-ff1a1a>u</c><c-ff1a1a>s</c><c-ff1a1a>h</c><c-ff1a1a>e</c><c-ff1a1a>r</c>
-
-update soone6e6>D</c><c-ffcccc>A</c><c-ffb3b3>Y</c><c-ff9999> </c><c-ff8080>D</c><c-ff6666>A</c><c-ff4d4d>N</c><c-ff3333>I</c><c-ff1a1a>E</c><c-ff0000>L</c><c-ff1a1a>!</c><c-ff3333>!</c><c-ff4d4d>!</c>
+<c-ff0000>H</c><c-ff1a1a>A</c><c-ff3333>P</c><c-ff4d4d>P</c><c-ff6666>Y</c><c-ff8080> </c><c-ff9999>B</c><c-ffb3b3>I</c><c-ffcccc>R</c><c-ffe6e6>T</c><c-ffffff>H</c><c-ffe6e6>D</c><c-ffcccc>A</c><c-ffb3b3>Y</c><c-ff9999> </c><c-ff8080>D</c><c-ff6666>A</c><c-ff4d4d>N</c><c-ff3333>I</c><c-ff1a1a>E</c><c-ff0000>L</c><c-ff1a1a>!</c><c-ff3333>!</c><c-ff4d4d>!</c>
 
 <c-ff6666>d</c><c-ff8080>i</c><c-ff9999>d</c><c-ffb3b3> </c><c-ffcccc>y</c><c-ffe6e6>o</c><c-ffffff>u</c><c-ffe6e6> </c><c-ffcccc>r</c><c-ffb3b3>e</c><c-ff9999>a</c><c-ff8080>l</c><c-ff6666>l</c><c-ff4d4d>y</c><c-ff3333> </c><c-ff1a1a>t</c><c-ff0000>h</c><c-ff1a1a>i</c><c-ff3333>n</c><c-ff4d4d>k</c><c-ff6666> </c><c-ff8080>I</c><c-ff9999>’</c><c-ffb3b3>d</c><c-ffcccc> </c><c-ffe6e6>l</c><c-ffffff>e</c><c-ffe6e6>t</c><c-ffcccc> </c><c-ffb3b3>t</c><c-ff9999>h</c><c-ff8080>i</c><c-ff6666>s</c><c-ff4d4d> </c><c-ff3333>d</c><c-ff1a1a>a</c><c-ff0000>y</c><c-ff1a1a> </c><c-ff3333>p</c><c-ff4d4d>a</c><c-ff6666>s</c><c-ff8080>s</c><c-ff9999> </c><c-ffb3b3>q</c><c-ffcccc>u</c><c-ffe6e6>i</c><c-ffffff>e</c><c-ffe6e6>t</c><c-ffcccc>l</c><c-ffb3b3>y</c><c-ff9999>?</c><c-ff8080> </c>
 
