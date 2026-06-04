@@ -21,6 +21,7 @@ class $modify(SubaruDeath, PlayLayer) {
             FMOD_DEFAULT, nullptr, &sound
         );
         system->playSound(sound, nullptr, false, &channel);
+        channel->setVolume(Mod::get()->getSettingValue<float>("volume"));
     }
     
 };
