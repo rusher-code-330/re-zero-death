@@ -4,24 +4,32 @@ using namespace geode::prelude;
 
 #include <Geode/modify/PlayLayer.hpp>
 #include <fmod.hpp>
-bool hasDoneThisAttempt = false;
 
 class $modify(SubaruDeath, PlayLayer) {
-    void destroyPlayer(PlayerObject* player, GameObject* object) {
-        PlayLayer::destroyPlayer(player, object);
-        if (object == m_anticheatSpike) return;
-        if (m_isPracticeMode) return;
-        
+    static inline FMOD::Sound* s_lastSound = nullptr;
+    void resetLevel() {
+        PlayLayer::resetLevel();
+        if (s_lastSound) {
+            s_lastSound->release();
+            s_lastSound = nullptr;
+        }
         auto audioFile = Mod::get()->getResourcesDir() / "returningbydeath.ogg";
+        if (!std::filesystem::exists(audioFile)) return;
         FMOD::Sound* sound = nullptr;
         FMOD::Channel* channel = nullptr;
         FMOD::System* system = FMODAudioEngine::sharedEngine()->m_system;
-        system->createSound(
-            geode::utils::string::pathToString(audioFile).c_str(),
-            FMOD_DEFAULT, nullptr, &sound
-        );
+        if (system){
+            system->createSound(
+                geode::utils::string::pathToString(audioFile).c_str(),
+                FMOD_DEFAULT, nullptr, &sound
+            );
+        }
+        if (!sound) return;
+        s_lastSound = sound;
         system->playSound(sound, nullptr, false, &channel);
-        channel->setVolume(Mod::get()->getSettingValue<float>("volume"));
+        if (channel) {
+            channel->setVolume(Mod::get()->getSettingValue<float>("volume"));
+        }
     }
     
 };
