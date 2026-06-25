@@ -13,11 +13,13 @@
     "description": "HAPPY BIRTHDAY DANIEL",
 
     "resources": {
+        "sprites": [
+            "resources/subarustaire.png"
+        ],
         "files": [
             "resources/returningbydeath.ogg"
         ]
     },
-
     "settings": {
         "volume": {
             "type": "float",
