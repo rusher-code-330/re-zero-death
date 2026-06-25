@@ -7,6 +7,7 @@ using namespace geode::prelude;
 
 class $modify(SubaruDeath, PlayLayer) {
     static inline FMOD::Sound* s_returningbydeath = nullptr;
+    static inline CCSprite* s_subarustaire = nullptr;
     
     bool init(GJGameLevel* level, bool useReplays, bool dontCreateObjects) {
         if (!PlayLayer::init(level, useReplays, dontCreateObjects)) return false;
@@ -34,11 +35,45 @@ class $modify(SubaruDeath, PlayLayer) {
                 channel->setVolume(Mod::get()->getSettingValue<float>("volume"));
             }
         }
+
+        displaytheimage();
     }
+
+    void displaytheimage() {
+        if (s_subarustaire) {
+            s_subarustaire->removeFromParentAndCleanup(true);
+            s_subarustaire = nullptr;
+        }
+        auto image = CCSprite::create("returningbydeath.png"_spr);
+        if (!image) {
+            log::error("Failed to create sprite for returningbydeath");
+            return;
+        }
+        auto winSize = CCDirector::sharedDirector()->getWinSize();
+        image->setPosition(winSize / 2);
+        image->setScale(2.0f); // Adjust the scale as needed
+        this->addChild(image);
+        s_subarustaire = image;
+        image->runAction(CCSequence::create(
+            CCDelayTime::create(2.0f),
+            CCFadeOut::create(0.5f),
+            CCCallFunc::create(this, callfunc_selector(SubaruDeath::removeImage)),
+            nullptr
+        ));
+    }
+
+    void removeImage() {
+        if (s_subarustaire) {
+            s_subarustaire->removeFromParentAndCleanup(true);
+            s_subarustaire = nullptr;
+        }
+    }
+
     ~SubaruDeath() {
         if (s_returningbydeath) {
             s_returningbydeath->release();
             s_returningbydeath = nullptr;
         }
+        removeImage();
     }
 };    
