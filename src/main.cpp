@@ -51,11 +51,11 @@ class $modify(SubaruDeath, PlayLayer) {
         }
         auto winSize = CCDirector::sharedDirector()->getWinSize();
         image->setPosition(winSize / 2);
-        image->setScale(2.0f); // Adjust the scale as needed
+        image->setScale(3.0f); // Adjust the scale as needed
         this->addChild(image);
         s_subarustaire = image;
         image->runAction(CCSequence::create(
-            CCDelayTime::create(2.0f),
+            CCDelayTime::create(1.5f),
             CCFadeOut::create(0.5f),
             CCCallFunc::create(this, callfunc_selector(SubaruDeath::removeImage)),
             nullptr
