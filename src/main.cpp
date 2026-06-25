@@ -44,7 +44,7 @@ class $modify(SubaruDeath, PlayLayer) {
             s_subarustaire->removeFromParentAndCleanup(true);
             s_subarustaire = nullptr;
         }
-        auto image = CCSprite::create("returningbydeath.png"_spr);
+        auto image = CCSprite::create("subarustaire.png"_spr);
         if (!image) {
             log::error("Failed to create sprite for returningbydeath");
             return;
