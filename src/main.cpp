@@ -55,8 +55,8 @@ class $modify(SubaruDeath, PlayLayer) {
         this->addChild(image);
         s_subarustaire = image;
         image->runAction(CCSequence::create(
-            CCDelayTime::create(0.5f),
-            CCFadeOut::create(0.3f),
+            CCDelayTime::create(0.2f),
+            CCFadeOut::create(0.1f),
             CCCallFunc::create(this, callfunc_selector(SubaruDeath::removeImage)),
             nullptr
         ));
