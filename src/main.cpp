@@ -6,40 +6,28 @@ using namespace geode::prelude;
 #include <fmod.hpp>
 #include <Geode/modify/MenuLayer.hpp>
 
-class $modify(TheMenuLayer, MenuLayer) {
-    static inline CCSprite* s_happybirthday = nullptr;
-
+class $modify(MyMenuLayer, MenuLayer) {
 public:
-    bool init() {
-        if (!MenuLayer::init()) {
-            return false;
-        }
-        auto bottomMenu=this ->getChildByID("bottom-menu");
-        auto button = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("accountBtn_messages_001.png"),
-        this,
-        menu_selector(TheMenuLayer::onButtonClicked)
-        );
-    
-    auto menu = CCMenu::create();
-    menu->addChild(button);
-    menu->setPosition({bottomMenu->getContentWidth() - 50.f, 50.f});
-    this->addChild(menu);
-    return true;
-    }
-
     void onRobTop(CCObject* sender) {
         FLAlertLayer::create("HAPPY BIRTHDAY", "HAPPY BIRTHDAY DANIEL!!! did you really think I’d let this day pass quietly? I know the kind of power you vibe with, the kind that keeps climbing no matter what. So here’s your gift, a profile picture wrapped in that same aura, use it anywhere, you know the rule, EVEN IF THE STAIRS NEVER END, WE KEEP CLIMBING!!!", "ok")->show();
     }
+};
 
-    void onButtonClicked(CCObject* sender) {
-        auto alert = FLAlertLayer::create("Daniel", "Daniel, here's a gift for you", "ok");
-        auto spr = CCSprite::create("happybirthday.png"_spr);
-        if (spr) {
-            spr->setScale(0.5f);
-            spr->setPosition({alert->m_mainLayer->getContentWidth() / 2, 160.f});
-            alert->m_mainLayer->addChild(spr);
+class $modify(MyCCLayer, CCLayer) {
+    static inline FMOD::Sound* s_daniel = nullptr;
+    bool ccTouchBegan(CCTouch* touch, CCEvent* event) {
+        if (!s_daniel) {
+            auto audioFile = Mod::get()->getResourcesDir() / "daniel.ogg";
+            FMOD::System* system = FMODAudioEngine::sharedEngine()->m_system;
+            system->createSound(geode::utils::string::pathToString(audioFile).c_str(), FMOD_CREATESAMPLE, nullptr, &s_daniel);
         }
-        alert->show();
+        FMOD::System* systeme = FMODAudioEngine::sharedEngine()->m_system;
+        FMOD::Channel* channel = nullptr;
+        systeme->playSound(s_daniel, nullptr, false, &channel);
+        if (channel) {
+            channel->setVolume(Mod::get()->getSettingValue<float>("volume"));
+        }
+        return CCLayer::ccTouchBegan(touch, event);
     }
 };
 
