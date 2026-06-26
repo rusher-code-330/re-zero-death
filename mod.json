@@ -14,6 +14,7 @@
 
     "resources": {
         "sprites": [
+            "resources/happybrithday.png",
             "resources/subarustaire.png"
         ],
         "files": [
