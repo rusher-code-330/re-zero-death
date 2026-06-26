@@ -14,10 +14,10 @@
 
     "resources": {
         "sprites": [
-            "resources/happybrithday.png",
             "resources/subarustaire.png"
         ],
         "files": [
+            "resources/daniel.ogg",
             "resources/returningbydeath.ogg"
         ]
     },
