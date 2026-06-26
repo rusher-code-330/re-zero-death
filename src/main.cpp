@@ -14,24 +14,6 @@ public:
     }
 };
 
-class $modify(MyCCLayer, CCLayer) {
-    static inline FMOD::Sound* s_daniel = nullptr;
-    bool ccTouchBegan(CCTouch* touch, CCEvent* event) {
-        if (!s_daniel) {
-            auto audioFile = Mod::get()->getResourcesDir() / "daniel.ogg";
-            FMOD::System* system = FMODAudioEngine::sharedEngine()->m_system;
-            system->createSound(geode::utils::string::pathToString(audioFile).c_str(), FMOD_CREATESAMPLE, nullptr, &s_daniel);
-        }
-        FMOD::System* systeme = FMODAudioEngine::sharedEngine()->m_system;
-        FMOD::Channel* channel = nullptr;
-        systeme->playSound(s_daniel, nullptr, false, &channel);
-        if (channel) {
-            channel->setVolume(Mod::get()->getSettingValue<float>("volume"));
-        }
-        return CCLayer::ccTouchBegan(touch, event);
-    }
-};
-
 class $modify(SubaruDeath, PlayLayer) {
     static inline FMOD::Sound* s_returningbydeath = nullptr;
     static inline CCSprite* s_subarustaire = nullptr;
