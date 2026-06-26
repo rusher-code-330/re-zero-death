@@ -5,6 +5,7 @@ using namespace geode::prelude;
 #include <Geode/modify/PlayLayer.hpp>
 #include <fmod.hpp>
 #include <Geode/modify/MenuLayer.hpp>
+#include <Geode/modify/CCLayer.hpp>
 
 class $modify(MyMenuLayer, MenuLayer) {
 public:
